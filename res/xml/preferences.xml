@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+
+    <CheckBoxPreference
+        android:title="Active"
+        android:summary="Whether this service should be running"
+        android:key="active" />
+        
+     <Preference 
+        android:title="Application"
+        android:summary="Which application to start when headphones are plugged in"
+        android:key="activity" />
+     />
+</PreferenceScreen>
+

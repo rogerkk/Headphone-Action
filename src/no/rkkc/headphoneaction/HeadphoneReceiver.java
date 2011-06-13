@@ -1,10 +1,12 @@
 package no.rkkc.headphoneaction;
 
-import android.app.LauncherActivity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.os.Bundle;
+import android.content.SharedPreferences;
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageManager;
+import android.preference.PreferenceManager;
 import android.util.Log;
 
 public class HeadphoneReceiver extends BroadcastReceiver {
@@ -29,20 +31,35 @@ public class HeadphoneReceiver extends BroadcastReceiver {
     
     @Override
     public void onReceive(Context context, Intent intent) {
+        
         if (intent.getAction().equalsIgnoreCase(Intent.ACTION_HEADSET_PLUG)) {
-            String data = intent.getDataString();
-            Bundle extraData = intent.getExtras();
 
             Integer state = intent.getIntExtra("state", -1);
-//            String nm = intent.getStringExtra("name");
-//            String mic = intent.getStringExtra("microphone");
-//            String all = String.format("st=%s, nm=%s, mic=%s", st, nm, mic);
 
             if (state > 0) {
                 Log.v("HeadphoneReceiver", "Plugged in!");
                 
-//                Intent launcherActivityIntent = new Intent(context, LauncherActivity.class);
-//                context.startActivity(launcherActivityIntent);
+                SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+                String appPackage = prefs.getString("appPackage", null);
+                String appClass = prefs.getString("appClass", null);
+                
+                if (appPackage == null || appClass == null) {
+                    return;
+                }
+                
+                try{
+                    // Make sure app exists on device before trying to launch.
+                    context.getPackageManager().getApplicationInfo(appPackage, 0 );
+                    
+                    // Application exists. Launch it!
+                    Intent newAppIntent = new Intent();
+                    newAppIntent.setClassName(appPackage, appClass);
+                    newAppIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    context.startActivity(newAppIntent);
+
+                } catch( PackageManager.NameNotFoundException e ){
+                    // Application doesn't exist
+               }
             }
         }
     }
