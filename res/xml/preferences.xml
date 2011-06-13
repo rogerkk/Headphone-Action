@@ -6,12 +6,12 @@
 
     <CheckBoxPreference
         android:title="Active"
-        android:summary="Whether this service should be running"
+        android:summary="Check to activate application"
         android:key="active" />
         
      <Preference 
         android:title="Application"
-        android:summary="Which application to start when headphones are plugged in"
+        android:summary="Click to select which application to start when headphones are plugged in"
         android:key="activity" />
      />
 </PreferenceScreen>
