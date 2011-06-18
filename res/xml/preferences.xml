@@ -13,6 +13,15 @@
         android:title="Application"
         android:summary="Click to select which application to start when headphones are plugged in"
         android:key="activity" />
+        
+     <PreferenceCategory
+        android:title="Advanced">
+        
+        <CheckBoxPreference 
+            android:title="Microphone"
+            android:summary="Fire action even if headphones have microphone"
+            android:key="Microphone" />
+     </PreferenceCategory>
      />
 </PreferenceScreen>
 

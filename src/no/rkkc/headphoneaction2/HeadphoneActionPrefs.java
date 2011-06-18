@@ -27,6 +27,9 @@ public class HeadphoneActionPrefs extends PreferenceActivity
         setupAppSelectorButton();
     }
 
+    /**
+     * Set up a listener on the "Activate" preference button, to manager service and receiver
+     */
     private void setupActivationButton() {
         final CheckBoxPreference activationPreference = (CheckBoxPreference)findPreference("active");
         
