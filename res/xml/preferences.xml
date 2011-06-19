@@ -20,7 +20,7 @@
         <CheckBoxPreference 
             android:title="Microphone"
             android:summary="Fire action even if headphones have microphone"
-            android:key="Microphone" />
+            android:key="microphone" />
      </PreferenceCategory>
      />
 </PreferenceScreen>
