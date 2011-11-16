@@ -6,20 +6,21 @@
 
     <CheckBoxPreference
         android:title="Active"
-        android:summary="Check to activate application"
+        android:summary="Activate/deactivate the action"
         android:key="active" />
         
      <Preference 
         android:title="Application"
-        android:summary="Click to select which application to start when headphones are plugged in"
+        android:summary="Select application to start when headphones are plugged in"
         android:key="activity" />
         
      <PreferenceCategory
         android:title="Advanced">
         
-        <CheckBoxPreference 
+        <CheckBoxPreference
             android:title="Microphone"
             android:summary="Fire action even if headphones have microphone"
+            android:defaultValue="true"
             android:key="microphone" />
      </PreferenceCategory>
      />
